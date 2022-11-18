@@ -2,6 +2,9 @@
 ## Stream 
 nats stream add   # Creating a stream (with name `orders`, with subject `orders.*`)
 nats stream ls
+nats stream view <StreamName>
+nats stream info <StreamName>
+
 nats pub orders.us "{{.Count}}" --count 1000  # Publish 1000 messages in orders.us subject
 
 nats sub --stream orders  # Read from the stream;  Options: --all, --new, --last, --last-per-subject <subject-name>, --start-sequence=<nth message & onward>
