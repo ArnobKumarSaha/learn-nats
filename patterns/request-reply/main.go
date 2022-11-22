@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"time"
 
@@ -15,11 +16,20 @@ func main() {
 	}
 
 	defer nc.Close()
+	respond(nc)
+	sync(nc)
+}
 
-	nc.Subscribe("foo", func(msg *nats.Msg) {
+func respond(nc *nats.Conn) {
+	_, err := nc.Subscribe("foo", func(msg *nats.Msg) {
 		log.Println("Request received:", string(msg.Data))
 
-		msg.Respond([]byte("Here you go!"))
+		err := msg.Respond([]byte("Here you go!"))
+		if err != nil {
+			// `message does not have a reply` error will be shown for Publish() call
+			fmt.Printf("error on Respond() %s \n", err)
+			return
+		}
 	})
 
 	// this block is added by me
