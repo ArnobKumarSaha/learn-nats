@@ -12,7 +12,6 @@ require (
 	gocloud.dev v0.27.0
 	gomodules.xyz/blobfs v0.1.11
 	k8s.io/apimachinery v0.25.1
-	k8s.io/klog/v2 v2.80.1
 	kmodules.xyz/client-go v0.25.10
 	sigs.k8s.io/controller-runtime v0.13.1
 )
@@ -112,6 +111,7 @@ require (
 	k8s.io/apiextensions-apiserver v0.25.1 // indirect
 	k8s.io/client-go v0.25.1 // indirect
 	k8s.io/component-base v0.25.1 // indirect
+	k8s.io/klog/v2 v2.80.1 // indirect
 	k8s.io/kube-openapi v0.0.0-20220803162953-67bda5d908f1 // indirect
 	k8s.io/utils v0.0.0-20220728103510-ee6ede2d64ed // indirect
 	sigs.k8s.io/json v0.0.0-20220713155537-f223a00ba0e2 // indirect

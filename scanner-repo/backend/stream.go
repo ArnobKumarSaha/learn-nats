@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"github.com/nats-io/nats.go"
 	"k8s.io/apimachinery/pkg/util/wait"
-	"k8s.io/klog/v2"
 	"time"
 )
 
@@ -54,8 +53,6 @@ func (mgr *Manager) Start(ctx context.Context, jsmOpts ...nats.JSOpt) error {
 	// create nats consumer with name `workers`
 	// Create a subscription for durable pull consumer
 
-	// start workers
-	klog.Info("Starting workers")
 	// Launch two workers to process Foo resources
 	for i := 0; i < 2; i++ {
 		go wait.Until(mgr.runWorker, 5*time.Second, ctx.Done())
