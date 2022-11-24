@@ -1,0 +1,19 @@
+FROM busybox as builder
+
+RUN set -x \
+  && wget https://github.com/nats-io/natscli/releases/download/v0.0.35/nats-0.0.35-linux-amd64.zip \
+  && unzip nats-0.0.35-linux-amd64.zip \
+  && mv nats-0.0.35-linux-amd64/nats /bin \
+  && rm -rf nats-0.0.35-linux-amd64.zip nats-0.0.35-linux-amd64 \
+  && nats --version
+
+RUN set -x \
+  && wget https://github.com/oras-project/oras/releases/download/v0.16.0/oras_0.16.0_linux_amd64.tar.gz \
+  && mkdir -p oras-install/ \
+  && tar -zxf oras_0.16.0_*.tar.gz -C oras-install/ \
+  && mv oras-install/oras /bin/ \
+  && rm -rf oras_0.16.0_*.tar.gz oras-install/
+
+ADD download-trivy-db.sh /scripts/update-trivydb.sh
+ADD /cache-trivydb.sh /scripts/extract.sh
+ADD /upload-report.sh /scripts/upload-report.sh

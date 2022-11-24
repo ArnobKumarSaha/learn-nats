@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: scan-image
+spec:
+  initContainers:
+  - name: trivy
+    image: aquasec/trivy
+    workingDir: /root/.cache
+    command:
+    - cp
+    - /usr/local/bin/trivy
+    - tv
+    volumeMounts:
+    - mountPath: /root/.cache
+      name: shared-disk
+  - name: trivydb
+    image: appscode/natscli
+    workingDir: /root/.cache
+    command:
+    - /scripts/cache-trivydb.sh
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+    - mountPath: /root/.cache
+      name: shared-disk
+  - name: scanner
+    image: ubuntu
+    workingDir: /root/.cache
+    command:
+    # - find
+    # - .
+    - sh
+    - -c
+    - './tv rootfs --skip-update --security-checks vuln --format json / > report.json'
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+    - mountPath: /root/.cache
+      name: shared-disk
+  containers:
+  - name: uploader
+    image: appscode/natscli
+    workingDir: /root/.cache
+    command:
+    - /scripts/upload-report.sh
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+    - mountPath: /root/.cache
+      name: shared-disk
+  restartPolicy: Never
+  volumes:
+  - name: shared-disk
+    emptyDir: {}

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: refresh-trivydb
+spec:
+  containers:
+  - image: appscode/natscli
+    command:
+      - /scripts/download-trivy-db.sh
+    imagePullPolicy: IfNotPresent
+    name: trivydb
+  restartPolicy: Never
