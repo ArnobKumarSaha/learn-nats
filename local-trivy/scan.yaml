@@ -18,7 +18,7 @@ spec:
     image: appscode/natscli
     workingDir: /root/.cache
     command:
-    - /scripts/cache-trivydb.sh
+    - /scripts/extract.sh
     imagePullPolicy: IfNotPresent
     volumeMounts:
     - mountPath: /root/.cache

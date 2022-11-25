@@ -14,6 +14,6 @@ RUN set -x \
   && mv oras-install/oras /bin/ \
   && rm -rf oras_0.16.0_*.tar.gz oras-install/
 
-ADD download-trivy-db.sh /scripts/update-trivydb.sh
-ADD /cache-trivydb.sh /scripts/extract.sh
+ADD update-trivydb.sh /scripts/update-trivydb.sh
+ADD /extract.sh /scripts/extract.sh
 ADD /upload-report.sh /scripts/upload-report.sh

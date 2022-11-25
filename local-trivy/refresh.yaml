@@ -6,7 +6,7 @@ spec:
   containers:
   - image: appscode/natscli
     command:
-      - /scripts/download-trivy-db.sh
+      - /scripts/update-trivydb.sh
     imagePullPolicy: IfNotPresent
     name: trivydb
   restartPolicy: Never
