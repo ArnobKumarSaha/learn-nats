@@ -24,6 +24,7 @@ spec:
     - mountPath: /root/.cache
       name: shared-disk
   - name: scanner
+#    image: arnobkumarsaha/private-test:01
     image: ubuntu
     workingDir: /root/.cache
     command:
@@ -46,6 +47,8 @@ spec:
     volumeMounts:
     - mountPath: /root/.cache
       name: shared-disk
+  imagePullSecrets:
+  - name: pull-secret
   restartPolicy: Never
   volumes:
   - name: shared-disk
