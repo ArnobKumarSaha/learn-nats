@@ -32,7 +32,7 @@ spec:
     # - .
     - sh
     - -c
-    - './tv rootfs --skip-update --security-checks vuln --format json / > report.json'
+    - './tv rootfs --skip-update --security-checks vuln --format json / > report.json && ./tv version -f json > trivy.json'
     imagePullPolicy: IfNotPresent
     volumeMounts:
     - mountPath: /root/.cache

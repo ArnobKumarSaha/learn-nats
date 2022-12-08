@@ -24,6 +24,14 @@
 > nats object info trivy
 ```
 
+# upload trivy to file-server (of the operator filesystem)
+```
+Need to run these from `local-trivy` folder.
+> wget https://github.com/aquasecurity/trivy-db/releases/latest/download/trivy-offline.db.tgz
+> mv trivy-offline.db.tgz db.tar.gz
+> kubectl curl -k -X POST -F file=@/home/arnob/go/src/github.com/Arnobkumarsaha/learn-nats/local-trivy/db.tar.gz  https://scanner-0:8443/files/trivy -n kubeops
+```
+
 # Build natscli
 
 ```

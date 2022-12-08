@@ -10,3 +10,8 @@ Configure: https://docs.nats.io/running-a-nats-service/configuration
 
 #### Presentation
 https://docs.google.com/presentation/d/1kRuA_DD3B9-swdIXlEBz4kLfZ0dO11gh3zlfvJNSmns/edit#slide=id.p 
+
+
+#### Extras
+https://shijuvar.medium.com/introducing-nats-to-go-developers-3cfcb98c21d0
+https://github.com/shijuvar/gokit/tree/master/examples/grpc-nats
